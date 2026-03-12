@@ -3,13 +3,13 @@ from config import Config
 from flask import jsonify
 from extensions import db
 from routes import bp
+from flask_cors import CORS
 
 app = Flask(__name__)
 app.config.from_object(Config)
 db.init_app(app)
-
 app.register_blueprint(bp)
-
+CORS(app)
 @app.route('/')
 def hello_world():
   return jsonify({'message': 'Hello World!'})
